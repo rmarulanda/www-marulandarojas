@@ -1,43 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Marulanda y Rojas Ingeniería</title>
   <style>
+    /* ――――――――――――――――――――――――――――― */
+    /*   Layout básico y tipografía   */
+    /* ――――――――――――――――――――――――――――― */
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
     body {
-      font-family: sans-serif;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       background: #f0f4f8;
+      color: #2d3748;
+    }
+    .container {
+      background: #ffffff;
+      padding: 2rem 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: center;
+      width: 320px;
     }
     h1 {
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
       color: #1a202c;
     }
     p {
-      margin: 1rem 0;
+      margin: 0 0 1.5rem;
       color: #4a5568;
     }
-    a.button {
-      background: #2b6cb0;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
+
+    /* ――――――――――――――――――――――――――――― */
+    /*   Estilos de formulario        */
+    /* ――――――――――――――――――――――――――――― */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
     }
-    a.button:hover {
-      background: #2c5282;
+    input {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      border: 1px solid #cbd5e0;
+      border-radius: 4px;
+    }
+    input:focus {
+      outline: none;
+      border-color: #3182ce;
+      box-shadow: 0 0 0 2px rgba(66,153,225,0.3);
+    }
+    button {
+      margin-top: 0.5rem;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background-color: #3182ce;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2b6cb0;
+    }
+    small {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: #718096;
     }
   </style>
 </head>
+
 <body>
-  <h1>Marulanda y Rojas Ingeniería</h1>
-  <p>Soluciones integrales en ingeniería.</p>
-  <a class="button" href="https://www.office.com" target="_blank">Acceso Microsoft 365</a>
+  <div class="container">
+    <h1>Marulanda y Rojas Ingeniería</h1>
+    <p>Soluciones integrales en ingeniería.</p>
+
+    <!-- ――――――――――――――――――――――――――――― -->
+    <!--    Formulario de “Acceso”      -->
+    <!-- ――――――――――――――――――――――――――――― -->
+    <form onsubmit="redirigirAMicrosoft(); return false;">
+      <input
+        type="email"
+        id="usuario"
+        placeholder="Usuario (correo)"
+        required
+      />
+      <input
+        type="password"
+        id="contrasena"
+        placeholder="Contraseña"
+        required
+      />
+      <button type="submit">Acceder a Microsoft 365</button>
+      <small>Serás redirigido(a) a la página oficial de inicio de sesión de Microsoft.</small>
+    </form>
+  </div>
+
+  <script>
+    /**
+     * Esta función no envía USER/PASS a otro servidor propio,
+     * sino que redirige al usuario a Microsoft para que inicie sesión
+     * en su cuenta de Office 365 de manera segura.
+     */
+    function redirigirAMicrosoft() {
+      // Opcionalmente, podemos leer lo que ingresó el usuario:
+      const usuario = document.getElementById("usuario").value;
+      // const contrasena = document.getElementById("contrasena").value;
+      //
+      // Pero NO es seguro ni soportado enviar contraseña directamente.
+      // En su lugar, redirigimos a Microsoft para que el usuario se autentique.
+      //
+      // URL genérica de inicio de sesión de Office 365:
+      const microsoftLoginUrl = "https://login.microsoftonline.com/";
+      window.location.href = microsoftLoginUrl;
+    }
+  </script>
 </body>
 </html>
+
